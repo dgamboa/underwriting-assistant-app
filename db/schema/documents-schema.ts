@@ -1,7 +1,7 @@
 import { index, pgTable, serial, text, timestamp, vector } from "drizzle-orm/pg-core";
 
 export const documentsTable = pgTable(
-  "facts",
+  "documents",
   {
     id: serial("id").primaryKey(),
     content: text("content").notNull(),
@@ -12,7 +12,7 @@ export const documentsTable = pgTable(
     updatedAt: timestamp("updated_at").notNull().defaultNow()
   },
   (table) => ({
-    embedding_index: index("embedding_index").using("hnsw", table.embedding.op("vector_cosine_ops"))
+    embedding_index: index("documents_embedding_index").using("hnsw", table.embedding.op("vector_cosine_ops"))
   })
 );
 

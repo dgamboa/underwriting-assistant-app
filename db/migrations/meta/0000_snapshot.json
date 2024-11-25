@@ -1,11 +1,11 @@
 {
-  "id": "b02fdd60-c85e-47ff-a059-018ed8227da0",
+  "id": "96a02f23-cddd-4bd8-8873-16be26c56e5b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.facts": {
-      "name": "facts",
+    "public.documents": {
+      "name": "documents",
       "schema": "",
       "columns": {
         "id": {
@@ -42,8 +42,8 @@
         }
       },
       "indexes": {
-        "embedding_index": {
-          "name": "embedding_index",
+        "documents_embedding_index": {
+          "name": "documents_embedding_index",
           "columns": [
             {
               "expression": "embedding",
