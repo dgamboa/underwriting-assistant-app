@@ -13,7 +13,7 @@ if (!databaseUrl) {
 
 const dbSchema = {
   // Tables
-  facts: factsTable
+  documents: documentsTable
 };
 
 function initializeDb(url: string) {
