@@ -58,7 +58,7 @@ export default function AiChat() {
         />
         <Button
           onClick={handleSendMessage}
-          className="mr-2"
+          className="bg-green-600 hover:bg-green-800 mr-2"
         >
           Send
         </Button>
