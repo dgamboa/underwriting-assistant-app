@@ -40,6 +40,7 @@ export default function AiChat() {
           content: "Sorry, there was an error processing your request."
         }
       ]);
+      console.log(error);
     }
 
     setInput("");
