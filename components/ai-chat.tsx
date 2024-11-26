@@ -47,8 +47,30 @@ export default function AiChat() {
 
   return (
     <div className="h-full flex flex-col">
-      <h2 className="text-2xl font-bold mb-4">AI Chat</h2>
-      <div className="flex-grow overflow-y-auto mb-4 border rounded p-4">
+      <h2 className="text-2xl font-bold mb-4">Underwriting Questions</h2>
+      <div className="flex mb-4">
+        <Input
+          className="flex-grow mr-2"
+          placeholder="Type your message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+        />
+        <Button
+          onClick={handleSendMessage}
+          className="mr-2"
+        >
+          Send
+        </Button>
+        <Button
+          onClick={() => setMessages([])}
+          variant="outline"
+        >
+          Reset
+        </Button>
+      </div>
+
+      <div className="flex-grow overflow-y-auto  border rounded p-4">
         {messages.map((message, index) => (
           <>
             <div
@@ -104,27 +126,7 @@ export default function AiChat() {
         ))}
       </div>
 
-      <div className="flex">
-        <Input
-          className="flex-grow mr-2"
-          placeholder="Type your message..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-        />
-        <Button
-          onClick={handleSendMessage}
-          className="mr-2"
-        >
-          Send
-        </Button>
-        <Button
-          onClick={() => setMessages([])}
-          variant="outline"
-        >
-          Reset
-        </Button>
-      </div>
+      
     </div>
   );
 }
