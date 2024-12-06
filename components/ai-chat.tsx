@@ -79,7 +79,7 @@ export default function AiChat() {
               className={`mb-4 p-3 rounded ${message.role === "ai" ? "bg-blue-50" : "bg-green-50"}`}
             >
               <strong>{message.role === "ai" ? "AI: " : "You: "}</strong>
-              {message.content}
+              <div dangerouslySetInnerHTML={{ __html: message.content.replace(/\n/g, '<br/>').replace(/•\s(.*?)(?=(\n|$))/g, '<li>$1</li>').replace(/((?:<li>.*?<\/li>\n*)+)/g, '<ul class="list-disc ml-6">$1</ul>') }} />
             </div>
             {message.role === "user" && currentDocs.length > 0 && index === messages.length - 2 && (
               <div
