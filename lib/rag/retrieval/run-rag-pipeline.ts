@@ -14,7 +14,7 @@ export async function runRagPipeline(query: string) {
     });
 
     console.log("Retrieved documents:", retrievedDocuments);
-    console.log("Retreiedv documents count:", retrievedDocuments.length);
+    console.log("Retrieved documents count:", retrievedDocuments.length);
 
     const rankedResults = await rankDocuments(optimizedQuery, retrievedDocuments, 5);
     console.log("Final ranked results:", rankedResults);

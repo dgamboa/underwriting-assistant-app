@@ -10,7 +10,7 @@ export async function generateCompletionWithContext(context: string, input: stri
     temperature: 0,
     max_tokens: 1000,
     messages: [
-      { role: "system", content: `Answer based on the provided context. Context: ${context}` }, // Consider making this more sophisticated
+      { role: "system", content: `Answer based on the provided context. Include URLs for any links referenced in your answer.Context: ${context}` }, // Consider making this more sophisticated
       { role: "user", content: input }
     ],
   });
