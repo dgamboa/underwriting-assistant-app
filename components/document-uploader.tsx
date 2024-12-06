@@ -11,7 +11,7 @@ export default function DocumentUploader() {
   const [password, setPassword] = useState("");
 
   const handleUpload = async () => {
-    const correctPassword = process.env.PUBLIC_UPLOAD_PASSWORD;
+    const correctPassword = process.env.NEXT_PUBLIC_UPLOAD_PASSWORD;
     if (password !== correctPassword) {
       alert("Incorrect password");
       return;
