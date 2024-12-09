@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { generateCompletionWithContext } from "@/lib/rag/generate/generate-completion";
 import { runRagPipeline } from "@/lib/rag/retrieval/run-rag-pipeline";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from 'react-markdown';
 
 export default function AiChat() {
@@ -12,6 +12,7 @@ export default function AiChat() {
   const [input, setInput] = useState("");
   const [currentDocs, setCurrentDocs] = useState<string[]>([]);
   const [expandedSources, setExpandedSources] = useState<number | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
@@ -46,6 +47,14 @@ export default function AiChat() {
 
     setInput("");
   };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className="h-full flex flex-col">
@@ -140,6 +149,7 @@ export default function AiChat() {
             )}
           </>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       
