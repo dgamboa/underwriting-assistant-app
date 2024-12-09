@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { generateCompletionWithContext } from "@/lib/rag/generate/generate-completion";
 import { runRagPipeline } from "@/lib/rag/retrieval/run-rag-pipeline";
 import { useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
 export default function AiChat() {
   const [messages, setMessages] = useState<{ role: "user" | "ai"; content: string }[]>([]);
@@ -79,7 +80,21 @@ export default function AiChat() {
               className={`mb-4 p-3 rounded ${message.role === "ai" ? "bg-blue-50" : "bg-green-50"}`}
             >
               <strong>{message.role === "ai" ? "AI: " : "You: "}</strong>
-              <div dangerouslySetInnerHTML={{ __html: message.content.replace(/\n/g, '<br/>').replace(/•\s(.*?)(?=(\n|$))/g, '<li>$1</li>').replace(/((?:<li>.*?<\/li>\n*)+)/g, '<ul class="list-disc ml-6">$1</ul>') }} />
+              <ReactMarkdown 
+                className="prose prose-sm max-w-none prose-a:text-blue-600 prose-a:underline"
+                components={{
+                  p: ({children}) => <p className="mt-2">{children}</p>,
+                  ul: ({children}) => <ul className="list-disc ml-6 mt-2">{children}</ul>,
+                  li: ({children}) => <li className="mt-1">{children}</li>,
+                  a: ({children, href}) => (
+                    <a href={href} className="text-blue-600 underline hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {message.content}
+              </ReactMarkdown>
             </div>
             {message.role === "user" && currentDocs.length > 0 && index === messages.length - 2 && (
               <div
